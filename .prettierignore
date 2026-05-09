@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-ssr
+.wrangler
+worker-configuration.d.ts
+public/stickers
+migrations
+pnpm-lock.yaml
