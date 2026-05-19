@@ -1,4 +1,5 @@
 import type { Sticker } from "./stickerTypes";
+import { getStickerDisplayName } from "./stickerDisplayName";
 
 type StickerImageProps = {
   sticker: Sticker;
@@ -18,7 +19,7 @@ export function StickerImage({ sticker, size = "medium" }: StickerImageProps) {
     <img
       className={`block object-contain ${sizeClasses[size]}`}
       src={sticker.imageUrl}
-      alt={sticker.name}
+      alt={getStickerDisplayName(sticker)}
       loading="lazy"
     />
   );

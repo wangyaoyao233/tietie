@@ -14,7 +14,7 @@ export function GoalAlbumGrid({ slots, recentlyFilledSlotId, onInspect }: GoalAl
   return (
     <div
       className="grid grid-cols-4 gap-2.5 rounded-[20px] border border-[#eadfcd] bg-[#fffaf1] p-3.5 shadow-[0_20px_40px_rgb(81_55_32_/_10%)] min-[700px]:grid-cols-5 min-[700px]:gap-3"
-      aria-label="目标贴纸册"
+      aria-label="目標ステッカーアルバム"
     >
       {slots.map((slot) => (
         <GoalSlot

@@ -16,7 +16,7 @@ app.notFound((c) =>
       ok: false as const,
       error: {
         code: "not_found",
-        message: "接口不存在",
+        message: "APIが見つかりません",
       },
     },
     404,

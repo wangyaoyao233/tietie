@@ -47,7 +47,7 @@ export function GoalAlbumPage({ goalId, userId }: GoalAlbumPageProps) {
       })
       .catch((caught) => {
         if (active) {
-          setError(caught instanceof Error ? caught.message : "目标册暂时无法加载");
+          setError(caught instanceof Error ? caught.message : "目標アルバムを読み込めませんでした");
         }
       })
       .finally(() => {
@@ -64,7 +64,7 @@ export function GoalAlbumPage({ goalId, userId }: GoalAlbumPageProps) {
   const handleComplete = async (input: { stickerId: string; note: string }) => {
     setCompleteError("");
     if (!input.stickerId) {
-      setCompleteError("请选择一张贴纸");
+      setCompleteError("ステッカーを1枚選んでください");
       return;
     }
 
@@ -78,24 +78,24 @@ export function GoalAlbumPage({ goalId, userId }: GoalAlbumPageProps) {
       setCompleteOpen(false);
       window.setTimeout(() => setRecentlyFilledSlotId(null), 900);
     } catch (caught) {
-      setCompleteError(caught instanceof Error ? caught.message : "这一步暂时无法保存");
+      setCompleteError(caught instanceof Error ? caught.message : "この一歩を保存できませんでした");
     } finally {
       setSubmitting(false);
     }
   };
 
   if (loading) {
-    return <p className="py-10 text-center text-[#756758]">正在打开目标册...</p>;
+    return <p className="py-10 text-center text-[#756758]">目標アルバムを開いています...</p>;
   }
 
   if (error || !goal) {
     return (
       <EmptyState
-        title="目标册暂时打不开"
-        body={error || "目标不存在"}
+        title="目標アルバムを開けませんでした"
+        body={error || "目標が見つかりません"}
         action={
           <Button type="button" onClick={() => navigateTo("/dashboard")}>
-            回到我的目标册
+            マイアルバムへ戻る
           </Button>
         }
       />
@@ -105,19 +105,19 @@ export function GoalAlbumPage({ goalId, userId }: GoalAlbumPageProps) {
   return (
     <main className={pageClass}>
       <button className={`${textLinkClass} mb-4`} type="button" onClick={() => navigateTo("/dashboard")}>
-        返回我的目标册
+        マイアルバムへ戻る
       </button>
       <section className="mb-[18px] grid gap-3">
-        <p className={eyebrowClass}>{goal.status === "completed" ? "已贴满" : "目标贴纸册"}</p>
+        <p className={eyebrowClass}>{goal.status === "completed" ? "貼り終わり" : "目標ステッカーアルバム"}</p>
         <h1 className={h1Class}>{goal.title}</h1>
         <ProgressBar value={goal.completedSteps} max={goal.totalSteps} />
-        {goal.finalReward ? <p className="font-bold text-[#6b5b48]">最终奖励：{goal.finalReward}</p> : null}
+        {goal.finalReward ? <p className="font-bold text-[#6b5b48]">最後のごほうび：{goal.finalReward}</p> : null}
       </section>
       {goal.status === "completed" ? (
         <CompletedGoalPanel goal={goal} />
       ) : (
         <Button type="button" className="mb-4 w-full" onClick={() => setCompleteOpen(true)}>
-          贴上一张
+          1枚貼る
         </Button>
       )}
       <GoalAlbumGrid slots={slots} recentlyFilledSlotId={recentlyFilledSlotId} onInspect={setInspectedSlot} />

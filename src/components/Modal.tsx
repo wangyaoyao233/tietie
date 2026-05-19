@@ -34,7 +34,7 @@ export function Modal({ title, open, onClose, children }: ModalProps) {
             variant="ghost"
             className="size-[42px] min-h-[42px] p-0 text-2xl"
             onClick={onClose}
-            aria-label="关闭"
+            aria-label="閉じる"
           >
             ×
           </Button>

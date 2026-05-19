@@ -24,7 +24,7 @@ export function CompleteStepModal({ open, stickers, submitting, error, onClose, 
   const [note, setNote] = useState("");
 
   return (
-    <Modal title="完成一步" open={open} onClose={submitting ? () => undefined : onClose}>
+    <Modal title="一歩完了" open={open} onClose={submitting ? () => undefined : onClose}>
       <form
         className="grid gap-4"
         onSubmit={(event) => {
@@ -34,23 +34,23 @@ export function CompleteStepModal({ open, stickers, submitting, error, onClose, 
       >
         <StickerPicker stickers={stickers} selectedStickerId={selectedStickerId} onSelect={setSelectedStickerId} />
         <label className={fieldClass}>
-          <span>写一句记录</span>
+          <span>ひと言メモ</span>
           <textarea
             className={inputClass}
             value={note}
             maxLength={240}
             rows={3}
             onChange={(event) => setNote(event.target.value)}
-            placeholder="今天的小进度被收起来了"
+            placeholder="今日の小さな進みをしまいました"
           />
         </label>
         {error ? <p className={formErrorClass}>{error}</p> : null}
         <div className="grid grid-cols-2 gap-2.5">
           <Button type="button" variant="secondary" onClick={onClose} disabled={submitting}>
-            取消
+            キャンセル
           </Button>
           <Button type="submit" disabled={submitting || !selectedStickerId}>
-            {submitting ? "保存中" : "贴上一张"}
+            {submitting ? "保存中" : "1枚貼る"}
           </Button>
         </div>
       </form>

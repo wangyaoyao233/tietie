@@ -12,13 +12,13 @@ const eyebrowClass = "text-[0.78rem] font-extrabold tracking-normal text-[#a6623
 export function CompletedGoalPanel({ goal }: CompletedGoalPanelProps) {
   return (
     <Card className="mb-4 grid gap-2.5 bg-[#f4f6dc] p-[18px]">
-      <p className={eyebrowClass}>已贴满</p>
-      <h2 className="text-xl leading-[1.22] tracking-normal text-[#241e18]">这本收集册已经贴满了</h2>
+      <p className={eyebrowClass}>貼り終わり</p>
+      <h2 className="text-xl leading-[1.22] tracking-normal text-[#241e18]">このアルバムはすべて埋まりました</h2>
       <p>
-        一共收起了 {goal.completedSteps} 个小进度
-        {goal.completedAt ? `，完成于 ${formatDate(goal.completedAt)}` : ""}。
+        小さな進みを {goal.completedSteps} 個集めました
+        {goal.completedAt ? `。完了日：${formatDate(goal.completedAt)}` : ""}。
       </p>
-      {goal.finalReward ? <p className="font-bold text-[#6b5b48]">最终奖励：{goal.finalReward}</p> : null}
+      {goal.finalReward ? <p className="font-bold text-[#6b5b48]">最後のごほうび：{goal.finalReward}</p> : null}
     </Card>
   );
 }

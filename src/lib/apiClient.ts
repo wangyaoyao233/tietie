@@ -29,7 +29,7 @@ const parseResponse = async <T>(response: Response): Promise<T> => {
   const payload = (await response.json().catch(() => null)) as ApiSuccess<T> | ApiError | null;
 
   if (!payload) {
-    throw new ApiClientError("服务暂时没有响应", "invalid_response", response.status);
+    throw new ApiClientError("サービスから応答がありません", "invalid_response", response.status);
   }
 
   if (!payload.ok) {

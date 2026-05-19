@@ -128,10 +128,12 @@ Avoid aggressive language:
 
 Use soft copy:
 
-- "贴上一张"
-- "今天的小进度被收起来了"
-- "又完成了一步"
-- "这本收集册已经贴满了"
+- "1枚貼る"
+- "今日の小さな進みをしまいました"
+- "また一歩進みました"
+- "このアルバムはすべて埋まりました"
+
+All user-facing web UI copy should be Japanese, including page text, forms, buttons, empty states, error messages, visible aria/alt copy, and API messages shown by the frontend.
 
 ### 4.3 Collection over task management
 
@@ -313,7 +315,7 @@ Show:
 
 - product concept
 - demo album preview
-- primary CTA: "创建我的第一本目标册"
+- primary CTA: "最初の目標アルバムを作る"
 
 If anonymous user already has goals, CTA can go to `/dashboard`.
 
@@ -713,31 +715,31 @@ Do not overbuild animation.
 
 ## 13. Copywriting
 
-Use Japanese or Chinese-friendly short copy. For this MVP, use Chinese UI text.
+Use Japanese-friendly short copy. For this MVP, all user-facing web UI text is Japanese.
 
 Suggested labels:
 
 ```txt
-创建目标册
-我的目标册
-贴上一张
-完成一步
-选择贴纸
-写一句记录
-最终奖励
-已贴满
-继续贴贴
-今天的小进度被收起来了
+目標アルバムを作る
+マイアルバム
+1枚貼る
+一歩完了
+ステッカーを選ぶ
+ひと言メモ
+最後のごほうび
+貼り終わり
+続きを貼る
+今日の小さな進みをしまいました
 ```
 
 Error messages:
 
 ```txt
-目标不存在
-这本目标册已经完成了
-请选择一张贴纸
-标题不能为空
-步数需要在 1 到 100 之间
+目標が見つかりません
+この目標アルバムはすでに完了しています
+ステッカーを1枚選んでください
+タイトルを入力してください
+ステップ数は1から100の間で入力してください
 ```
 
 ---
@@ -941,9 +943,9 @@ Manual test checklist:
 
 ### Create goal
 
-- Create goal with title "日语学习"
+- Create goal with title "日本語の勉強"
 - Set total steps to 10
-- Set reward to "买一本漫画原版书"
+- Set reward to "原書のマンガを1冊買う"
 - Confirm dashboard shows `0 / 10`
 
 ### Complete step

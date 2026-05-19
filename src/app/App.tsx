@@ -33,24 +33,24 @@ function LandingPage({ userId }: { userId: string }) {
     >
       <section className="grid gap-4">
         <p className={eyebrowClass}>Sticker Goals</p>
-        <h1 className={h1Class}>把目标做成一本贴纸册</h1>
+        <h1 className={h1Class}>目標をステッカーアルバムに</h1>
         <p className="max-w-lg text-[1.05rem] leading-[1.6] text-[#6e6255]">
-          每完成一个小步骤，就选择一张贴纸，把今天的小进度收进下一格。
+          小さな一歩を終えるたびにステッカーを選び、今日の進みを次のマスにしまいます。
         </p>
         <div className="mt-2 flex flex-wrap gap-2.5">
           <Button type="button" onClick={() => navigateTo(hasGoals ? "/dashboard" : "/goals/new")}>
-            {hasGoals ? "回到我的目标册" : "创建我的第一本目标册"}
+            {hasGoals ? "マイアルバムへ戻る" : "最初の目標アルバムを作る"}
           </Button>
           {hasGoals ? null : (
             <Button type="button" variant="secondary" onClick={() => navigateTo("/dashboard")}>
-              我的目标册
+              マイアルバム
             </Button>
           )}
         </div>
       </section>
       <section
         className="grid grid-cols-4 gap-2.5 rounded-[18px] border border-[#eadfcd] bg-[#fffaf1] p-3.5 shadow-[0_20px_40px_rgb(81_55_32_/_10%)]"
-        aria-label="贴纸册预览"
+        aria-label="ステッカーアルバムのプレビュー"
       >
         {Array.from({ length: 12 }, (_, index) => (
           <div
@@ -61,7 +61,7 @@ function LandingPage({ userId }: { userId: string }) {
             )}
             key={index}
           >
-            {index < 4 ? ["✦", "花", "书", "心"][index] : index + 1}
+            {index < 4 ? ["✦", "花", "本", "心"][index] : index + 1}
           </div>
         ))}
       </section>
@@ -86,7 +86,7 @@ function DashboardPage({ userId }: { userId: string }) {
       })
       .catch((caught) => {
         if (active) {
-          setError(caught instanceof Error ? caught.message : "目标册暂时无法加载");
+          setError(caught instanceof Error ? caught.message : "目標アルバムを読み込めませんでした");
         }
       })
       .finally(() => {
@@ -104,22 +104,22 @@ function DashboardPage({ userId }: { userId: string }) {
     <main className={pageClass}>
       <header className="mb-[22px] flex items-start justify-between gap-4">
         <div>
-          <p className={eyebrowClass}>我的目标册</p>
-          <h1 className={h1Class}>继续贴贴</h1>
+          <p className={eyebrowClass}>マイアルバム</p>
+          <h1 className={h1Class}>続きを貼る</h1>
         </div>
         <Button type="button" onClick={() => navigateTo("/goals/new")}>
-          创建目标册
+          目標アルバムを作る
         </Button>
       </header>
-      {loading ? <p className="py-10 text-center text-[#756758]">正在整理目标册...</p> : null}
+      {loading ? <p className="py-10 text-center text-[#756758]">目標アルバムを整理中...</p> : null}
       {error ? <p className={formErrorClass}>{error}</p> : null}
       {!loading && !error && goals.length === 0 ? (
         <EmptyState
-          title="还没有目标册"
-          body="先创建一本小小的贴纸册，完成一步就贴上一张。"
+          title="目標アルバムはまだありません"
+          body="小さなステッカーアルバムを作って、一歩進むたびに一枚貼りましょう。"
           action={
             <Button type="button" onClick={() => navigateTo("/goals/new")}>
-              创建目标册
+              目標アルバムを作る
             </Button>
           }
         />
@@ -138,12 +138,12 @@ function NewGoalPage({ userId }: { userId: string }) {
   return (
     <main className={pageClass}>
       <button className={cn(textLinkClass, "mb-4")} type="button" onClick={() => navigateTo("/dashboard")}>
-        返回我的目标册
+        マイアルバムへ戻る
       </button>
       <header className="mb-[22px] block">
         <div>
-          <p className={eyebrowClass}>创建目标册</p>
-          <h1 className={h1Class}>先留几个空位</h1>
+          <p className={eyebrowClass}>目標アルバムを作る</p>
+          <h1 className={h1Class}>まず空きマスを用意</h1>
         </div>
       </header>
       <GoalForm userId={userId} />
