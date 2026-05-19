@@ -24,7 +24,7 @@ export function GoalSlot({ slot, isNext, recentlyFilledSlotId, onInspect }: Goal
       )}
       type="button"
       onClick={() => onInspect(slot)}
-      aria-label={`查看第 ${slot.slotIndex} 格`}
+      aria-label={`${slot.slotIndex} マス目を見る`}
     >
       <StickerImage sticker={sticker} size="large" />
       <span className={slotIndexClass}>{slot.slotIndex}</span>

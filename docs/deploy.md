@@ -135,6 +135,7 @@ pnpm exec wrangler d1 migrations apply DB --remote
 
 - `0000_initial.sql`：创建 `users`、`goals`、`goal_slots`、`stickers`、`completions`、`rewards` 等表。
 - `0001_seed_stickers.sql`：写入 MVP 内置贴纸数据。
+- `0002_update_sticker_names_ja.sql`：把已存在的内置贴纸名称更新为日语。
 
 `wrangler d1 migrations apply DB --remote` 首次执行时会按顺序应用以上 migration。为了确认贴纸 seed 已经写入，也可以在首次初始化后单独重复执行一次 seed 文件：
 
@@ -188,7 +189,7 @@ curl https://<your-worker-domain>/api/health
 1. 进入 `/dashboard`。
 2. 创建一个目标册。
 3. 进入目标详情页。
-4. 点击“完成一步”。
+4. 点击“一歩完了”。
 5. 选择贴纸并提交。
 6. 确认贴纸出现在下一个空槽，刷新页面后状态仍保留。
 

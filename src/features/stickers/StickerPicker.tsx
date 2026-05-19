@@ -1,4 +1,5 @@
 import { cn } from "../../lib/cn";
+import { getStickerDisplayName } from "./stickerDisplayName";
 import { StickerImage } from "./StickerImage";
 import type { Sticker } from "./stickerTypes";
 
@@ -9,12 +10,12 @@ type StickerPickerProps = {
 };
 
 const themeLabels: Record<string, string> = {
-  study: "学习",
-  fitness: "运动",
-  reading: "阅读",
-  money: "储蓄",
+  study: "学習",
+  fitness: "運動",
+  reading: "読書",
+  money: "貯金",
   daily: "日常",
-  cute: "可爱",
+  cute: "かわいい",
 };
 
 const stickerOptionClass =
@@ -48,7 +49,7 @@ export function StickerPicker({ stickers, selectedStickerId, onSelect }: Sticker
               >
                 <StickerImage sticker={sticker} size="small" />
                 <span className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-[0.78rem] font-extrabold">
-                  {sticker.name}
+                  {getStickerDisplayName(sticker)}
                 </span>
               </button>
             ))}

@@ -9,6 +9,6 @@ stickerRoutes.get("/", async (c) => {
   try {
     return ok(c, await listStickers(c.env.DB));
   } catch {
-    return fail(c, 500, "internal_error", "贴纸暂时无法加载");
+    return fail(c, 500, "internal_error", "ステッカーを読み込めませんでした");
   }
 });
