@@ -18,8 +18,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "sticker-goals-local",
-      "database_id": "local",
+      "database_name": "sticker-goals",
+      "database_id": "0bafcd3d-164a-479c-8f82-ee6372b747d0",
     },
   ],
   "r2_buckets": [

@@ -867,7 +867,7 @@ pnpm lint
 pnpm db:generate
 pnpm db:migrate
 pnpm db:seed
-pnpm deploy
+pnpm run deploy
 ```
 
 Add scripts to `package.json`.
