@@ -208,6 +208,8 @@ R2 binding `STICKER_ASSETS` 仅预留，不阻塞 MVP。当前不实现上传、
 
 主要配置：
 
+- `.github/workflows/ci.yml`：pull request 到 `main` 时运行 lint 和 build。
+- `.github/workflows/deploy.yml`：`main` 更新后运行 lint、build，并通过 Wrangler 自动部署到 Cloudflare。
 - `vite.config.ts`：Vite 与 Cloudflare/Vite plugin 配置。
 - `wrangler.jsonc`：Worker、assets、D1、R2 与 compatibility 配置。
 - `drizzle.config.ts`：Drizzle schema 与 migration 输出配置。

@@ -97,7 +97,31 @@ pnpm db:migrate
 pnpm db:seed
 ```
 
-## 6. 首次初始化远程 D1
+## 6. GitHub Actions CI/CD
+
+项目使用 GitHub Actions 自动化检查和生产部署：
+
+- `.github/workflows/ci.yml`：当 pull request 指向 `main` 时运行 `pnpm install --frozen-lockfile`、`pnpm lint` 和 `pnpm build`，只做检查，不部署。
+- `.github/workflows/deploy.yml`：当 `main` 收到 push 时运行同样检查，全部通过后使用 Wrangler 部署到 Cloudflare。
+
+GitHub 仓库需要配置以下 Actions secrets：
+
+- `CLOUDFLARE_API_TOKEN`：Cloudflare API token。建议只授予部署该 Worker、读取账号资源、访问对应 D1/R2 资源所需的最小权限。
+- `CLOUDFLARE_ACCOUNT_ID`：Cloudflare account ID。
+
+CI/CD 使用 Node.js `24` 和 pnpm `10`。依赖安装使用 frozen lockfile，确保 GitHub Actions 按仓库中的 `pnpm-lock.yaml` 安装依赖。
+
+推荐发布流程：
+
+1. 从功能分支发起 pull request。
+2. 等待 `CI` workflow 通过。
+3. 合并到 `main`。
+4. `Deploy` workflow 自动部署 Worker API 和前端静态资源。
+5. 部署完成后按本文档的部署后验证步骤检查线上功能。
+
+数据库 migration 不随每次 `main` 部署自动执行。修改 schema 后，先人工确认 migration 内容，再手动执行远程 D1 migration，避免部署过程中自动修改生产数据结构。
+
+## 7. 首次初始化远程 D1
 
 第一次创建生产 D1 后，远程数据库是空的。部署前必须先把表结构和内置贴纸数据写入远程 D1，否则线上 API 会因为缺表或缺少贴纸数据而不能正常工作。
 
@@ -128,9 +152,11 @@ pnpm exec wrangler d1 execute DB --remote --command="SELECT COUNT(*) AS count FR
 
 预期 `count` 至少为 `24`。
 
-## 7. 部署 Worker 和前端资源
+## 8. 部署 Worker 和前端资源
 
-执行部署：
+合并到 `main` 后，GitHub Actions 会自动执行生产部署。
+
+如需从本地手动部署，执行：
 
 ```bash
 pnpm run deploy
@@ -138,7 +164,7 @@ pnpm run deploy
 
 该脚本会先执行 `pnpm run build`，再执行 `wrangler deploy`。部署成功后，Wrangler 会输出 Worker 的访问地址。
 
-## 8. 部署后验证
+## 9. 部署后验证
 
 部署完成后检查健康接口：
 
@@ -166,23 +192,25 @@ curl https://<your-worker-domain>/api/health
 5. 选择贴纸并提交。
 6. 确认贴纸出现在下一个空槽，刷新页面后状态仍保留。
 
-## 9. 后续更新流程
+## 10. 后续更新流程
 
 常规代码更新：
 
 ```bash
 pnpm lint
 pnpm build
-pnpm run deploy
 ```
+
+通过 pull request 合并到 `main` 后，`Deploy` workflow 会自动部署。
 
 如果修改了数据库 schema：
 
 ```bash
 pnpm db:generate
 pnpm exec wrangler d1 migrations apply DB --remote
-pnpm run deploy
 ```
+
+确认远程 D1 migration 已成功后，再合并或重新触发部署。
 
 如果修改了 Wrangler binding：
 
@@ -190,10 +218,11 @@ pnpm run deploy
 pnpm cf-typegen
 pnpm lint
 pnpm build
-pnpm run deploy
 ```
 
-## 10. 注意事项
+然后通过 `main` 的自动部署发布，或在需要时手动执行 `pnpm run deploy`。
+
+## 11. 注意事项
 
 - 不要把 `.env`、token、账号密钥或临时文件提交到仓库。
 - 生产 D1 数据库的 `database_id` 必须使用 Cloudflare 返回的真实 ID。
