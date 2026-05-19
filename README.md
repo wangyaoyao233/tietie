@@ -172,13 +172,14 @@ pnpm cf-typegen
 部署：
 
 ```bash
-pnpm deploy
+pnpm run deploy
 ```
 
 ## 文档
 
 - `docs/project-goal.md`：产品目标、MVP 范围和验收标准。
 - `docs/architecture.md`：当前架构、数据模型、API、配置和维护规则。
+- `docs/deploy.md`：部署到 Cloudflare 的操作流程。
 - `AGENTS.md`：Agent 协作规范、实现约束和项目规则。
 
 当 README、产品文档、架构文档、Agent 规则或其他说明文档涉及同一事实时，修改时需要同步检查并保持一致。

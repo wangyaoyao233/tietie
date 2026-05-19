@@ -274,7 +274,7 @@ pnpm lint
 pnpm format
 pnpm format:check
 pnpm preview
-pnpm deploy
+pnpm run deploy
 pnpm cf-typegen
 pnpm db:generate
 pnpm db:migrate
